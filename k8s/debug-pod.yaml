@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ts-weatherbroadcaster-debug
+spec:
+  restartPolicy: Never
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+    fsGroupChangePolicy: OnRootMismatch
+  containers:
+    - name: update-weather
+      image: lsstts/ts-weatherbroadcaster:latest
+      command:
+        - python
+        - -m
+        - tsweatherbroadcaster.update_weather
+      env:
+        - name: TS_WEATHERBROADCASTER_LOG_LEVEL
+          value: INFO
+      volumeMounts:
+        - name: weather-data
+          mountPath: /data
+  volumes:
+    - name: weather-data
+      persistentVolumeClaim:
+        claimName: ts-weatherbroadcaster-weather-data

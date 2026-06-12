@@ -1,0 +1,21 @@
+[project]
+title = "ts_weatherbroadcaster"
+copyright = "2026 Association of Universities for Research in Astronomy, Inc. (AURA)"
+
+[project.python]
+package = "ts_weatherbroadcaster"
+
+[project.openapi]
+openapi_path = "_static/openapi.json"
+doc_path = "api"
+
+[project.openapi.generator]
+function = "tsweatherbroadcaster.main:create_openapi"
+
+[sphinx]
+nitpicky = true
+nitpick_ignore = [
+    ["py:class", "fastapi.applications.FastAPI"],
+    ["py:class", "structlog.stdlib.BoundLogger"],
+    ["py:class", "pathlib.Path"],
+]

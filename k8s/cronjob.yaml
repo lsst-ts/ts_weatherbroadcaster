@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ts-weatherbroadcaster-update-weather
+spec:
+  schedule: "7 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        spec:
+          restartPolicy: OnFailure
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
+          containers:
+            - name: update-weather
+              image: lsstts/ts-weatherbroadcaster:latest
+              command:
+                - python
+                - -m
+                - tsweatherbroadcaster.update_weather
+              env:
+                - name: TS_WEATHERBROADCASTER_LOG_LEVEL
+                  value: INFO
+              volumeMounts:
+                - name: weather-data
+                  mountPath: /data
+          volumes:
+            - name: weather-data
+              persistentVolumeClaim:
+                claimName: ts-weatherbroadcaster-weather-data

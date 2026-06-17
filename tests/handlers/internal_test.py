@@ -1,9 +1,9 @@
-"""Tests for the tsweatherbroadcaster.handlers.internal module and routes."""
+"""Tests for the weatherbroadcaster.handlers.internal module and routes."""
 
 import pytest
 from httpx import AsyncClient
 
-from tsweatherbroadcaster.config import config
+from weatherbroadcaster.config import config
 
 
 @pytest.mark.asyncio

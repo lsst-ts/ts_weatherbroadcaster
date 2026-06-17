@@ -7,7 +7,7 @@ from typing import ClassVar
 import pandas as pd
 import pytest
 
-from tsweatherbroadcaster import weather
+from weatherbroadcaster import weather
 
 
 def _efd_result(

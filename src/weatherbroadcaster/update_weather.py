@@ -8,7 +8,7 @@ from pathlib import Path
 import aiofiles
 import aiofiles.os
 
-from tsweatherbroadcaster.config import config
+from weatherbroadcaster.config import config
 
 from .weather import fetch_weather_data
 

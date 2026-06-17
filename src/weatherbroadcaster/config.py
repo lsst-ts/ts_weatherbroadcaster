@@ -10,10 +10,10 @@ __all__ = ["Config", "config"]
 
 
 class Config(BaseSettings):
-    """Configuration for ts_weatherbroadcaster."""
+    """Configuration for weatherbroadcaster."""
 
     model_config = SettingsConfigDict(
-        env_prefix="TS_WEATHERBROADCASTER_", case_sensitive=False
+        env_prefix="WEATHERBROADCASTER_", case_sensitive=False
     )
 
     log_level: LogLevel = Field(
@@ -24,10 +24,10 @@ class Config(BaseSettings):
         Profile.development, title="Application logging profile"
     )
 
-    name: str = Field("ts_weatherbroadcaster", title="Name of application")
+    name: str = Field("weatherbroadcaster", title="Name of application")
 
     path_prefix: str = Field(
-        "/ts_weatherbroadcaster", title="URL prefix for application"
+        "/weatherbroadcaster", title="URL prefix for application"
     )
 
     slack_webhook: SecretStr | None = Field(
@@ -42,4 +42,4 @@ class Config(BaseSettings):
 
 
 config = Config()
-"""Configuration for ts_weatherbroadcaster."""
+"""Configuration for weatherbroadcaster."""

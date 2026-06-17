@@ -1,4 +1,4 @@
-"""Tests for the tsweatherbroadcaster.handlers.external module and routes."""
+"""Tests for the weatherbroadcaster.handlers.external module and routes."""
 
 from pathlib import Path
 from typing import Self
@@ -7,7 +7,7 @@ import aiofiles
 import pytest
 from httpx import AsyncClient
 
-from tsweatherbroadcaster.config import config
+from weatherbroadcaster.config import config
 
 
 class _AsyncReadableFile:
@@ -28,8 +28,8 @@ class _AsyncReadableFile:
 
 @pytest.mark.asyncio
 async def test_get_index(client: AsyncClient) -> None:
-    """Test ``GET /ts_weatherbroadcaster/``."""
-    response = await client.get("/ts_weatherbroadcaster/")
+    """Test ``GET /weatherbroadcaster/``."""
+    response = await client.get("/weatherbroadcaster/")
     assert response.status_code == 200
     data = response.json()
     metadata = data["metadata"]
@@ -44,7 +44,7 @@ async def test_get_index(client: AsyncClient) -> None:
 async def test_get_data(
     client: AsyncClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Test ``GET /ts_weatherbroadcaster/data``."""
+    """Test ``GET /weatherbroadcaster/data``."""
 
     def open_override(path: Path) -> _AsyncReadableFile:
         assert path == Path("/data/weather.json")
@@ -68,7 +68,7 @@ async def test_get_data(
 
     monkeypatch.setattr(aiofiles, "open", open_override)
 
-    response = await client.get("/ts_weatherbroadcaster/data")
+    response = await client.get("/weatherbroadcaster/data")
 
     assert response.status_code == 200
     assert response.json() == {
@@ -90,7 +90,7 @@ async def test_get_data(
 async def test_get_data_not_cached(
     client: AsyncClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """Test ``GET /ts_weatherbroadcaster/data`` when no cache exists."""
+    """Test ``GET /weatherbroadcaster/data`` when no cache exists."""
 
     def open_override(path: Path) -> _AsyncReadableFile:
         assert path == Path("/data/weather.json")
@@ -98,7 +98,7 @@ async def test_get_data_not_cached(
 
     monkeypatch.setattr(aiofiles, "open", open_override)
 
-    response = await client.get("/ts_weatherbroadcaster/data")
+    response = await client.get("/weatherbroadcaster/data")
 
     assert response.status_code == 503
     assert response.json() == {

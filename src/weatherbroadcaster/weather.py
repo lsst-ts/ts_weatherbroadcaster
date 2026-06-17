@@ -23,7 +23,7 @@ def _read_mean(result: Any, field: str, topic: str) -> float:
     columns = list(getattr(result, "columns", ()))
     index = getattr(result, "index", ())
     log: structlog.stdlib.BoundLogger = structlog.getLogger(
-        "tsweatherbroadcaster"
+        "weatherbroadcaster"
     )
 
     if len(index) == 0:

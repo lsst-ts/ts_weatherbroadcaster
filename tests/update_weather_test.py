@@ -5,9 +5,9 @@ from pathlib import Path
 
 import pytest
 
-from tsweatherbroadcaster.config import config
-from tsweatherbroadcaster.models import Data
-from tsweatherbroadcaster.update_weather import main
+from weatherbroadcaster.config import config
+from weatherbroadcaster.models import Data
+from weatherbroadcaster.update_weather import main
 
 
 @pytest.mark.asyncio
@@ -29,7 +29,7 @@ async def test_main_writes_weather_cache(
         )
 
     monkeypatch.setattr(
-        "tsweatherbroadcaster.update_weather.fetch_weather_data",
+        "weatherbroadcaster.update_weather.fetch_weather_data",
         fetch_weather_data,
     )
     monkeypatch.setattr(

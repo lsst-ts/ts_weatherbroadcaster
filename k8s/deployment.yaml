@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ts-weatherbroadcaster
+  name: weatherbroadcaster
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ts-weatherbroadcaster
+      app: weatherbroadcaster
   template:
     metadata:
       labels:
-        app: ts-weatherbroadcaster
+        app: weatherbroadcaster
     spec:
       securityContext:
         runAsNonRoot: true
@@ -19,13 +19,13 @@ spec:
         fsGroup: 1000
         fsGroupChangePolicy: OnRootMismatch
       containers:
-        - name: ts-weatherbroadcaster
-          image: lsstts/ts-weatherbroadcaster:latest
+        - name: weatherbroadcaster
+          image: lsstts/weatherbroadcaster:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
-            - name: TS_WEATHERBROADCASTER_LOG_LEVEL
+            - name: WEATHERBROADCASTER_LOG_LEVEL
               value: INFO
           volumeMounts:
             - name: weather-data
@@ -34,4 +34,4 @@ spec:
       volumes:
         - name: weather-data
           persistentVolumeClaim:
-            claimName: ts-weatherbroadcaster-weather-data
+            claimName: weatherbroadcaster-weather-data

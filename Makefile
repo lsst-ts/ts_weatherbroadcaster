@@ -1,6 +1,6 @@
 .PHONY: help
 help:
-	@echo "Make targets for ts_weatherbroadcaster"
+	@echo "Make targets for weatherbroadcaster"
 	@echo "make init - Set up dev environment"
 	@echo "make docs - Build documentation"
 	@echo "make run - Start a local development instance"

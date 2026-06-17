@@ -2832,84 +2832,6 @@ wheels = [
 ]
 
 [[package]]
-name = "ts-weatherbroadcaster"
-source = { editable = "." }
-dependencies = [
-    { name = "aiofiles" },
-    { name = "fastapi" },
-    { name = "lsst-efd-client" },
-    { name = "pydantic" },
-    { name = "pydantic-settings" },
-    { name = "rubin-gafaelfawr" },
-    { name = "rubin-repertoire" },
-    { name = "safir" },
-    { name = "uvicorn", extra = ["standard"] },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "asgi-lifespan" },
-    { name = "coverage" },
-    { name = "httpx" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "respx" },
-    { name = "scriv" },
-]
-docs = [
-    { name = "documenteer", extra = ["guide"] },
-]
-lint = [
-    { name = "pre-commit" },
-    { name = "pre-commit-uv" },
-    { name = "ruff" },
-]
-tox = [
-    { name = "tox" },
-    { name = "tox-uv" },
-]
-typing = [
-    { name = "mypy" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aiofiles", specifier = ">=25.1.0" },
-    { name = "fastapi", specifier = ">=0.100" },
-    { name = "lsst-efd-client", git = "https://github.com/lsst-ts/lsst-efd-client?tag=v1.0.0" },
-    { name = "pydantic", specifier = ">2" },
-    { name = "pydantic-settings", specifier = ">=2" },
-    { name = "rubin-gafaelfawr", specifier = ">=15.2.4" },
-    { name = "rubin-repertoire", specifier = ">=0.12.1" },
-    { name = "safir", specifier = ">=5" },
-    { name = "uvicorn", extras = ["standard"], specifier = ">=0.34" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "asgi-lifespan" },
-    { name = "coverage", extras = ["toml"], specifier = ">=5.0.2" },
-    { name = "httpx" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "respx" },
-    { name = "scriv", extras = ["toml"] },
-]
-docs = [{ name = "documenteer", extras = ["guide"] }]
-lint = [
-    { name = "pre-commit" },
-    { name = "pre-commit-uv" },
-    { name = "ruff", specifier = ">=0.12" },
-]
-tox = [
-    { name = "tox", specifier = ">=4.24" },
-    { name = "tox-uv", specifier = ">=1.25" },
-]
-typing = [{ name = "mypy", specifier = ">=1.15" }]
-
-[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3106,6 +3028,84 @@ sdist = { url = "https://files.pythonhosted.org/packages/49/b4/51fe890511f0f242d
 wheels = [
     { url = "https://files.pythonhosted.org/packages/bd/6e/95b0e537de1f4d4301f76f944642c6da50d1511cc7b3d64dc418a66c7509/wcwidth-0.8.1-py3-none-any.whl", hash = "sha256:f453740b1e4a4f3291faa37944c555d71056c4da08d59809b307ef4feba695c8", size = 323092, upload-time = "2026-06-08T05:57:21.413Z" },
 ]
+
+[[package]]
+name = "weatherbroadcaster"
+source = { editable = "." }
+dependencies = [
+    { name = "aiofiles" },
+    { name = "fastapi" },
+    { name = "lsst-efd-client" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "rubin-gafaelfawr" },
+    { name = "rubin-repertoire" },
+    { name = "safir" },
+    { name = "uvicorn", extra = ["standard"] },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "asgi-lifespan" },
+    { name = "coverage" },
+    { name = "httpx" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "respx" },
+    { name = "scriv" },
+]
+docs = [
+    { name = "documenteer", extra = ["guide"] },
+]
+lint = [
+    { name = "pre-commit" },
+    { name = "pre-commit-uv" },
+    { name = "ruff" },
+]
+tox = [
+    { name = "tox" },
+    { name = "tox-uv" },
+]
+typing = [
+    { name = "mypy" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aiofiles", specifier = ">=25.1.0" },
+    { name = "fastapi", specifier = ">=0.100" },
+    { name = "lsst-efd-client", git = "https://github.com/lsst-ts/lsst-efd-client?tag=v1.0.0" },
+    { name = "pydantic", specifier = ">2" },
+    { name = "pydantic-settings", specifier = ">=2" },
+    { name = "rubin-gafaelfawr", specifier = ">=15.2.4" },
+    { name = "rubin-repertoire", specifier = ">=0.12.1" },
+    { name = "safir", specifier = ">=5" },
+    { name = "uvicorn", extras = ["standard"], specifier = ">=0.34" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "asgi-lifespan" },
+    { name = "coverage", extras = ["toml"], specifier = ">=5.0.2" },
+    { name = "httpx" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "respx" },
+    { name = "scriv", extras = ["toml"] },
+]
+docs = [{ name = "documenteer", extras = ["guide"] }]
+lint = [
+    { name = "pre-commit" },
+    { name = "pre-commit-uv" },
+    { name = "ruff", specifier = ">=0.12" },
+]
+tox = [
+    { name = "tox", specifier = ">=4.24" },
+    { name = "tox-uv", specifier = ">=1.25" },
+]
+typing = [{ name = "mypy", specifier = ">=1.15" }]
 
 [[package]]
 name = "websockets"

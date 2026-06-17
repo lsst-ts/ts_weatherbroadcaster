@@ -1,9 +1,9 @@
 # Change log
 
-ts_weatherbroadcaster is versioned with [semver](https://semver.org/).
+weatherbroadcaster is versioned with [semver](https://semver.org/).
 Dependencies are updated to the latest available version during each release, and aren't noted here.
 
-Find changes for the upcoming release in the project's [changelog.d directory](https://github.com/lsst-sqre/ts_weatherbroadcaster/tree/main/changelog.d/).
+Find changes for the upcoming release in the project's [changelog.d directory](https://github.com/lsst-sqre/weatherbroadcaster/tree/main/changelog.d/).
 
 <!-- scriv-insert-here -->
 
@@ -13,7 +13,7 @@ Find changes for the upcoming release in the project's [changelog.d directory](h
 ### New features
 
 - Added a weather update command that fetches EFD weather data and writes a cached MeteoBlue-compatible JSON payload.
-- Added configurable weather data file path support via `TS_WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH`.
+- Added configurable weather data file path support via `WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH`.
 
 ### Other changes
 

@@ -1,4 +1,4 @@
-"""Test fixtures for ts_weatherbroadcaster tests."""
+"""Test fixtures for weatherbroadcaster tests."""
 
 from collections.abc import AsyncGenerator
 
@@ -7,7 +7,7 @@ from asgi_lifespan import LifespanManager
 from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
 
-from tsweatherbroadcaster import main
+from weatherbroadcaster import main
 
 
 @pytest_asyncio.fixture

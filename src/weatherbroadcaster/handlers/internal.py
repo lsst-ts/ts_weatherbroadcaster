@@ -1,7 +1,7 @@
 """Internal HTTP handlers that serve relative to the root path, ``/``.
 
 These handlers aren't externally visible since the app is available at a path,
-``/ts_weatherbroadcaster``. See `tsweatherbroadcaster.handlers.external` for
+``/weatherbroadcaster``. See `weatherbroadcaster.handlers.external` for
 the external endpoint handlers.
 
 These handlers should be used for monitoring, health checks, internal status,
@@ -33,6 +33,6 @@ internal_router = APIRouter(route_class=SlackRouteErrorHandler)
 )
 async def get_index() -> Metadata:
     return get_metadata(
-        package_name="ts_weatherbroadcaster",
+        package_name="weatherbroadcaster",
         application_name=config.name,
     )

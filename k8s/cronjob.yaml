@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: ts-weatherbroadcaster-update-weather
+  name: weatherbroadcaster-update-weather
 spec:
   schedule: "7 * * * *"
   concurrencyPolicy: Forbid
@@ -21,13 +21,13 @@ spec:
             fsGroupChangePolicy: OnRootMismatch
           containers:
             - name: update-weather
-              image: lsstts/ts-weatherbroadcaster:latest
+              image: lsstts/weatherbroadcaster:latest
               command:
                 - python
                 - -m
-                - tsweatherbroadcaster.update_weather
+                - weatherbroadcaster.update_weather
               env:
-                - name: TS_WEATHERBROADCASTER_LOG_LEVEL
+                - name: WEATHERBROADCASTER_LOG_LEVEL
                   value: INFO
               volumeMounts:
                 - name: weather-data
@@ -35,4 +35,4 @@ spec:
           volumes:
             - name: weather-data
               persistentVolumeClaim:
-                claimName: ts-weatherbroadcaster-weather-data
+                claimName: weatherbroadcaster-weather-data

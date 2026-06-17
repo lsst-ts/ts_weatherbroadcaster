@@ -9,19 +9,19 @@ Weather cache
 =============
 
 Both the API deployment and the weather update CronJob must be configured with
-the same ``TS_WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH`` value, or must mount
+the same ``WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH`` value, or must mount
 the same Kubernetes volume at the default path:
 
 .. code-block:: text
 
    /data/weather.json
 
-The API reads this file for ``GET /ts_weatherbroadcaster/data``. The CronJob
+The API reads this file for ``GET /weatherbroadcaster/data``. The CronJob
 writes it by running:
 
 .. code-block:: bash
 
-   python -m tsweatherbroadcaster.update_weather
+   python -m weatherbroadcaster.update_weather
 
 Local Kubernetes resources
 ==========================

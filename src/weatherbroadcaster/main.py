@@ -1,4 +1,4 @@
-"""The main application factory for the ts_weatherbroadcaster service.
+"""The main application factory for the weatherbroadcaster service.
 
 Notes
 -----
@@ -41,20 +41,20 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
 configure_logging(
     profile=config.log_profile,
     log_level=config.log_level,
-    name="tsweatherbroadcaster",
+    name="weatherbroadcaster",
 )
 configure_uvicorn_logging(config.log_level)
 
 app = FastAPI(
-    title="ts_weatherbroadcaster",
-    description=metadata("ts_weatherbroadcaster")["Summary"],
-    version=version("ts_weatherbroadcaster"),
+    title="weatherbroadcaster",
+    description=metadata("weatherbroadcaster")["Summary"],
+    version=version("weatherbroadcaster"),
     openapi_url=f"{config.path_prefix}/openapi.json",
     docs_url=f"{config.path_prefix}/docs",
     redoc_url=f"{config.path_prefix}/redoc",
     lifespan=lifespan,
 )
-"""The main FastAPI application for ts_weatherbroadcaster."""
+"""The main FastAPI application for weatherbroadcaster."""
 
 # Attach the routers.
 app.include_router(internal_router)
@@ -65,13 +65,13 @@ app.add_middleware(XForwardedMiddleware)
 
 # Configure Slack alerts.
 if config.slack_webhook:
-    logger = structlog.get_logger("tsweatherbroadcaster")
+    logger = structlog.get_logger("weatherbroadcaster")
     SlackRouteErrorHandler.initialize(
-        config.slack_webhook, "ts_weatherbroadcaster", logger
+        config.slack_webhook, "weatherbroadcaster", logger
     )
     logger.debug("Initialized Slack webhook")
 
-logger = structlog.getLogger("tsweatherbroadcaster")
+logger = structlog.getLogger("weatherbroadcaster")
 discovery_dependency.initialize(logger)
 
 

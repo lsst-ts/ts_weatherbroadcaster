@@ -1,4 +1,4 @@
-"""Handlers for the app's external root, ``/ts_weatherbroadcaster/``."""
+"""Handlers for the app's external root, ``/weatherbroadcaster/``."""
 
 from typing import Annotated
 
@@ -33,7 +33,7 @@ async def get_index(
     # Customize this handler to return whatever the top-level resource of your
     # application should return. For example, consider listing key API URLs.
     # When doing so, also change or customize the response model in
-    # tsweatherbroadcaster.models.Index.
+    # weatherbroadcaster.models.Index.
     #
     # By convention, the root of the external API includes a field called
     # metadata that provides the same Safir-generated metadata as the internal
@@ -45,7 +45,7 @@ async def get_index(
     logger.info("Request for application metadata")
 
     metadata = get_metadata(
-        package_name="ts_weatherbroadcaster",
+        package_name="weatherbroadcaster",
         application_name=config.name,
     )
     return Index(metadata=metadata)

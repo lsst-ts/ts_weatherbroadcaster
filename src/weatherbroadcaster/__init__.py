@@ -1,4 +1,4 @@
-"""The ts_weatherbroadcaster service."""
+"""The weatherbroadcaster service."""
 
 __all__ = ["__version__"]
 
@@ -8,7 +8,7 @@ __version__: str
 """The application version string (PEP 440 / SemVer compatible)."""
 
 try:
-    __version__ = version("ts_weatherbroadcaster")
+    __version__ = version("weatherbroadcaster")
 except PackageNotFoundError:
     # package is not installed
     __version__ = "0.0.0"

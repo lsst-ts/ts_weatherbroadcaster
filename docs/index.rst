@@ -1,8 +1,8 @@
 #####################
-ts_weatherbroadcaster
+weatherbroadcaster
 #####################
 
-ts_weatherbroadcaster publishes Rubin Observatory weather station data in a
+weatherbroadcaster publishes Rubin Observatory weather station data in a
 MeteoBlue-compatible JSON format.
 
 User guide

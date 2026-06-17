@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ts-weatherbroadcaster
+  name: weatherbroadcaster
 spec:
   selector:
-    app: ts-weatherbroadcaster
+    app: weatherbroadcaster
   ports:
     - name: http
       port: 8080

@@ -25,4 +25,4 @@ before running the API and updater:
 
 .. code-block:: bash
 
-   TS_WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH=/tmp/ts-weatherbroadcaster/weather.json make run
+   WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH=/tmp/weatherbroadcaster/weather.json make run

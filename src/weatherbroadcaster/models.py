@@ -1,4 +1,4 @@
-"""Models for ts_weatherbroadcaster."""
+"""Models for weatherbroadcaster."""
 
 from typing import Literal
 

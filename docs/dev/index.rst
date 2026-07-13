@@ -26,3 +26,10 @@ before running the API and updater:
 .. code-block:: bash
 
    WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH=/tmp/weatherbroadcaster/weather.json make run
+
+In a separate terminal, run the updater continuously against the same cache:
+
+.. code-block:: bash
+
+   WEATHERBROADCASTER_WEATHER_DATA_FILE_PATH=/tmp/weatherbroadcaster/weather.json \
+     uv run weatherbroadcaster update --loop

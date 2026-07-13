@@ -31,6 +31,21 @@ spec:
             - name: weather-data
               mountPath: /data
               readOnly: true
+        - name: update-weather
+          image: lsstts/weatherbroadcaster:latest
+          imagePullPolicy: Always
+          command:
+            - weatherbroadcaster
+            - update
+            - --loop
+          env:
+            - name: WEATHERBROADCASTER_LOG_LEVEL
+              value: INFO
+            - name: WEATHERBROADCASTER_WEATHER_UPDATE_INTERVAL
+              value: "3600"
+          volumeMounts:
+            - name: weather-data
+              mountPath: /data
       volumes:
         - name: weather-data
           persistentVolumeClaim:

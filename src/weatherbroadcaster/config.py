@@ -39,6 +39,18 @@ class Config(BaseSettings):
         Path("/data/weather.json"),
         title="The path to write the weather.json file.",
     )
+    weather_fetch_timeout: float = Field(
+        30,
+        gt=0,
+        title=(
+            "Maximum number of seconds to wait for weather data from the EFD."
+        ),
+    )
+    weather_update_interval: int = Field(
+        60 * 60,
+        gt=0,
+        title="Number of seconds between weather cache updates.",
+    )
 
 
 config = Config()

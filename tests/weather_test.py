@@ -1,5 +1,6 @@
 """Tests for weather data retrieval."""
 
+import asyncio
 from datetime import UTC, datetime
 from math import nan
 from typing import ClassVar
@@ -65,6 +66,17 @@ class _EfdClient:
         raise AssertionError(f"Unexpected query: {query}")
 
 
+class _HangingEfdClient:
+    influx_client = _InfluxClient()
+
+    def __init__(self, *, efd_name: str) -> None:
+        assert efd_name == "usdf_efd"
+        self._influx_client = self.influx_client
+
+    async def influxql_query(self, query: str) -> pd.DataFrame:
+        await asyncio.Event().wait()
+
+
 @pytest.mark.asyncio
 async def test_fetch_weather_data(
     monkeypatch: pytest.MonkeyPatch,
@@ -96,6 +108,21 @@ async def test_fetch_weather_data(
     assert data.LON == -70.7494166667
     assert data.HEIGHT == 2647
     assert _EfdClient.influx_client.closed
+
+
+@pytest.mark.asyncio
+async def test_fetch_weather_data_times_out_and_closes_client(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Test a stalled EFD query times out and closes its client."""
+    _HangingEfdClient.influx_client = _InfluxClient()
+    monkeypatch.setattr(weather, "EfdClient", _HangingEfdClient)
+    monkeypatch.setattr(weather.config, "weather_fetch_timeout", 0.01)
+
+    with pytest.raises(TimeoutError):
+        await weather.fetch_weather_data()
+
+    assert _HangingEfdClient.influx_client.closed
 
 
 def test_read_mean_missing_column() -> None:

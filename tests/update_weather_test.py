@@ -48,3 +48,27 @@ async def test_main_writes_weather_cache(
         '"PRECIPITATION": 0.1}'
     )
     assert list(tmp_path.glob(".weather.json.*.tmp")) == []
+
+
+@pytest.mark.asyncio
+async def test_main_does_not_write_cache_after_timeout(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    """Test a weather-fetch timeout leaves no cache file behind."""
+    weather_data_file_path = tmp_path / "weather.json"
+
+    async def fetch_weather_data() -> Data:
+        raise TimeoutError
+
+    monkeypatch.setattr(
+        "weatherbroadcaster.update_weather.fetch_weather_data",
+        fetch_weather_data,
+    )
+    monkeypatch.setattr(
+        config, "weather_data_file_path", weather_data_file_path
+    )
+
+    with pytest.raises(TimeoutError):
+        await main()
+
+    assert not weather_data_file_path.exists()

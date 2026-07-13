@@ -10,6 +10,7 @@ import pandas as pd
 import structlog
 from lsst_efd_client import EfdClient
 
+from .config import config
 from .models import Data
 
 
@@ -134,19 +135,20 @@ async def fetch_weather_data() -> Data:
     )
 
     try:
-        (
-            temperature_result,
-            wind_result,
-            humidity_result,
-            dew_point_result,
-            rain_rate_result,
-        ) = await asyncio.gather(
-            client.influxql_query(temp_query),
-            client.influxql_query(wind_query),
-            client.influxql_query(humidity_query),
-            client.influxql_query(dew_point_query),
-            client.influxql_query(rain_rate_query),
-        )
+        async with asyncio.timeout(config.weather_fetch_timeout):
+            (
+                temperature_result,
+                wind_result,
+                humidity_result,
+                dew_point_result,
+                rain_rate_result,
+            ) = await asyncio.gather(
+                client.influxql_query(temp_query),
+                client.influxql_query(wind_query),
+                client.influxql_query(humidity_query),
+                client.influxql_query(dew_point_query),
+                client.influxql_query(rain_rate_query),
+            )
     finally:
         await _close_client(client)
 

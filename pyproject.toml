@@ -20,6 +20,7 @@ classifiers = [
 requires-python = ">=3.14"
 dependencies = [
     "aiofiles>=25.1.0",
+    "click>=8",
     "fastapi>=0.100",
     "lsst-efd-client",
     "pydantic>2",
@@ -34,6 +35,9 @@ dynamic = ["version"]
 [project.urls]
 Homepage = "https://weatherbroadcaster.lsst.io"
 Source = "https://github.com/lsst-sqre/weatherbroadcaster"
+
+[project.scripts]
+weatherbroadcaster = "weatherbroadcaster.cli:main"
 
 [build-system]
 requires = ["setuptools>=61", "setuptools_scm[toml]>=6.2"]

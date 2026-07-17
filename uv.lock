@@ -1605,7 +1605,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "ptyprocess" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
@@ -3034,6 +3034,7 @@ name = "weatherbroadcaster"
 source = { editable = "." }
 dependencies = [
     { name = "aiofiles" },
+    { name = "click" },
     { name = "fastapi" },
     { name = "lsst-efd-client" },
     { name = "pydantic" },
@@ -3074,6 +3075,7 @@ typing = [
 [package.metadata]
 requires-dist = [
     { name = "aiofiles", specifier = ">=25.1.0" },
+    { name = "click", specifier = ">=8" },
     { name = "fastapi", specifier = ">=0.100" },
     { name = "lsst-efd-client", git = "https://github.com/lsst-ts/lsst-efd-client?tag=v1.0.0" },
     { name = "pydantic", specifier = ">2" },

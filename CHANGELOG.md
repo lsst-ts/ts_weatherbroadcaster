@@ -7,6 +7,14 @@ Find changes for the upcoming release in the project's [changelog.d directory](h
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-v0.3.0'></a>
+## v0.3.0 (2026-07-17)
+
+### New features
+
+- Add a weather-update CLI with bounded retries, configurable request timeout
+  and update interval, and a local Kubernetes updater sidecar.
+
 <a id='changelog-v0.2.0'></a>
 ## v0.2.0 (2026-06-17)
 
